@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Wyślij post{% endblock %}
+
+{% block content %}
+  {% if sent %}
+    <h1>E-mail został wysłany</h1>
+    <p>
+      "{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.
+    </p>
+  {% else %}
+    <h1>Wyślij "{{ post.title }}" przez e-mail</h1>
+    <form method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="submit" value="Wyślij e-mail">
+    </form>
+  {% endif %}
+{% endblock %}
